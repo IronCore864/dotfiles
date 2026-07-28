@@ -95,12 +95,14 @@ APT_PACKAGES=(
     libxcb-xfixes0-dev
     libxkbcommon-dev
 
-    # Input method
-    fcitx
-    libqt5qml5
-    libqt5quick5
-    libqt5quickwidgets5
-    qml-module-qtquick2
+    # Input method (Fcitx5 with Pinyin)
+    fcitx5
+    fcitx5-chinese-addons
+    fcitx5-frontend-gtk3
+    fcitx5-frontend-gtk4
+    fcitx5-frontend-qt5
+    fcitx5-frontend-qt6
+    fcitx5-config-qt
 
     # Fusuma dependencies
     ruby
@@ -147,13 +149,7 @@ if ! dpkg -l obsidian &>/dev/null; then
     rm -f /tmp/obsidian.deb
 fi
 
-# Sogou Pinyin
-if ! dpkg -l sogoupinyin &>/dev/null; then
-    wget -qO /tmp/sogoupinyin.deb "https://pinyin.sogou.com/linux/download.php?f=linux&bit=64" \
-        || warn "Download Sogou Pinyin manually from https://pinyin.sogou.com/linux"
-    sudo dpkg -i /tmp/sogoupinyin.deb || sudo apt -f install -y
-    rm -f /tmp/sogoupinyin.deb
-fi
+
 
 # ============================================================================
 # 5. Install Alacritty (via cargo)
@@ -205,6 +201,9 @@ ln -sf "$DOTFILES_DIR/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacrit
 mkdir -p "$HOME/.config/fusuma"
 ln -sf "$DOTFILES_DIR/fusuma/config.yml" "$HOME/.config/fusuma/config.yml"
 
+mkdir -p "$HOME/.config/environment.d"
+ln -sf "$DOTFILES_DIR/environment.d/im-fcitx5.conf" "$HOME/.config/environment.d/im-fcitx5.conf"
+
 # ============================================================================
 # 9. Libinput quirks (ThinkBook 14 touchpad fix)
 # ============================================================================
@@ -222,10 +221,10 @@ mkdir -p "$HOME/.config/autostart"
 cp "$DOTFILES_DIR/autostart/fusuma.desktop" "$HOME/.config/autostart/fusuma.desktop"
 
 # ============================================================================
-# 11. Set Fcitx as default input method
+# 11. Set Fcitx5 as default input method
 # ============================================================================
-info "Setting Fcitx as default input method..."
-im-config -n fcitx
+info "Setting Fcitx5 as default input method..."
+im-config -n fcitx5
 
 # ============================================================================
 # 12. Apply GNOME settings
@@ -242,7 +241,7 @@ info " Setup complete! Please reboot."
 info "=========================================="
 info ""
 info "Post-reboot steps:"
-info "  1. Open Fcitx config and add Sogou Pinyin"
+info "  1. Open Fcitx5 Configuration and add Pinyin input method"
 info "  2. Log out/in if GNOME settings don't take effect"
 info "  3. Install Chrome PWAs (Teams, Outlook) manually from Chrome"
 info "  4. Configure Clash Verge proxy settings"
