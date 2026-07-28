@@ -210,12 +210,19 @@ ln -sf "$DOTFILES_DIR/fcitx5/profile" "$HOME/.config/fcitx5/profile"
 ln -sf "$DOTFILES_DIR/fcitx5/conf/pinyin.conf" "$HOME/.config/fcitx5/conf/pinyin.conf"
 
 # ============================================================================
-# 9. Libinput quirks (ThinkBook 14 touchpad fix)
+# 9. Libinput quirks (ThinkBook 14 touchpad fix + scroll speed)
 # ============================================================================
 info "Installing libinput touchpad quirks..."
 
 sudo mkdir -p /etc/libinput
 sudo cp "$DOTFILES_DIR/libinput/local-overrides.quirks" /etc/libinput/local-overrides.quirks
+
+# Touchpad scroll speed reduction via udev hwdb resolution override
+info "Installing touchpad scroll speed hwdb override..."
+sudo mkdir -p /etc/udev/hwdb.d
+sudo cp "$DOTFILES_DIR/libinput/61-evdev-local.hwdb" /etc/udev/hwdb.d/61-evdev-local.hwdb
+sudo systemd-hwdb update
+sudo udevadm trigger /dev/input/event*
 
 # ============================================================================
 # 10. Autostart entries

@@ -1,0 +1,12 @@
+# Goodix GXTP5100 (27C6:01E7) touchpad on Lenovo ThinkBook 14
+# Override touchpad resolution to slow scroll speed (~0.6x).
+# Actual size: 134x77mm, range X=0-4149, Y=0-2147.
+# Original resolution: X=31, Y=28 (units/mm).
+# Bumped resolution to ~52 and ~47 so libinput treats the same
+# finger travel as covering less distance → slower scroll.
+# Also reduces pointer sensitivity; compensate via GNOME touchpad speed slider.
+evdev:input:b0018v27C6p01E7*
+ EVDEV_ABS_00=0:4149:0:0:52
+ EVDEV_ABS_01=0:2147:0:0:47
+ EVDEV_ABS_35=0:4149:0:0:52
+ EVDEV_ABS_36=0:2147:0:0:47
