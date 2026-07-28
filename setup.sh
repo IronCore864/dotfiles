@@ -204,6 +204,11 @@ ln -sf "$DOTFILES_DIR/fusuma/config.yml" "$HOME/.config/fusuma/config.yml"
 mkdir -p "$HOME/.config/environment.d"
 ln -sf "$DOTFILES_DIR/environment.d/im-fcitx5.conf" "$HOME/.config/environment.d/im-fcitx5.conf"
 
+mkdir -p "$HOME/.config/fcitx5/conf"
+ln -sf "$DOTFILES_DIR/fcitx5/config" "$HOME/.config/fcitx5/config"
+ln -sf "$DOTFILES_DIR/fcitx5/profile" "$HOME/.config/fcitx5/profile"
+ln -sf "$DOTFILES_DIR/fcitx5/conf/pinyin.conf" "$HOME/.config/fcitx5/conf/pinyin.conf"
+
 # ============================================================================
 # 9. Libinput quirks (ThinkBook 14 touchpad fix)
 # ============================================================================
@@ -219,6 +224,7 @@ info "Installing autostart entries..."
 
 mkdir -p "$HOME/.config/autostart"
 cp "$DOTFILES_DIR/autostart/fusuma.desktop" "$HOME/.config/autostart/fusuma.desktop"
+cp "$DOTFILES_DIR/autostart/fcitx5.desktop" "$HOME/.config/autostart/fcitx5.desktop"
 
 # ============================================================================
 # 11. Set Fcitx5 as default input method
