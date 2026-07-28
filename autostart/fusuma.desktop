@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Fusuma
+Exec=fusuma -d
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true

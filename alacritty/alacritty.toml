@@ -1,0 +1,104 @@
+# Alacritty configuration
+# Bash is started as a login shell so ~/.bash_profile is loaded.
+
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]
+
+[window]
+padding = { x = 10, y = 8 }
+dynamic_padding = true
+opacity = 0.96
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "DejaVu Sans Mono" }
+size = 11.5
+
+[selection]
+# Selecting text with the mouse immediately copies it to the clipboard.
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+dim_foreground = "#9399b2"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#1e1e2e"
+cursor = "#f5e0dc"
+
+[colors.selection]
+text = "#cdd6f4"
+background = "#45475a"
+
+[colors.normal]
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
+
+[colors.bright]
+black = "#585b70"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#a6adc8"
+
+# Ctrl+V behaves like a desktop paste shortcut. Ctrl+C remains available
+# for interrupting terminal programs; use Ctrl+Shift+C to copy explicitly.
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+# Open a new Alacritty window.
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"

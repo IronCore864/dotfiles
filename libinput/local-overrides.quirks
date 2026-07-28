@@ -1,0 +1,12 @@
+# Goodix GXTP5100 (27C6:01E7) touchpad on Lenovo ThinkBook 14
+# Device declares ABS_PRESSURE max=2000 but a real fingertip only
+# reports pressure ~1-10 (median 2). Without this quirk libinput's
+# default touch-down threshold (derived from the 2000 max) is never
+# reached, so every touch is treated as a hover and the pointer
+# never moves. Pin realistic thresholds instead.
+[Goodix GXTP5100 Touchpad Pressure]
+MatchUdevType=touchpad
+MatchBus=i2c
+MatchVendor=0x27C6
+MatchProduct=0x01E7
+AttrPressureRange=2:1
